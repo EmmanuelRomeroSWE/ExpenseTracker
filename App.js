@@ -2,7 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Ionicons } from "@expo/vector-icons"
+import Ionicons from '@expo/vector-icons/Ionicons'
+
 
 import ManageExpenses from './screens/ManageExpenses';
 import RecentExpenses from './screens/RecentExpenses';
@@ -14,7 +15,7 @@ const BottomTabs = createBottomTabNavigator()
 
 function ExpensesOverview() {
   //TODO: Replace the Ionicons with another icon library compatible with react native... Also make sure that they are not working on Android
-  return <BottomTabs.Navigator screenOptions={{
+  return (<BottomTabs.Navigator screenOptions={{
     headerStyle: { backgroundColor: GlobalStyles.colors.primary500},
     headerTintColor: "white",
     tabBarStyle: { backgroundColor: GlobalStyles.colors.primary500},
@@ -24,17 +25,17 @@ function ExpensesOverview() {
     options={{
       title: "Recent Expenses",
       tabBarLabel: "Recent",
-      tabBartIcon: ({color, size}) => (<Ionicons name="hourglass" size={size} color={color}/>)
+      tabBarIcon: ({color, size}) => <Ionicons name="hourglass" size={size} color={color}/>
   }}
     />
     <BottomTabs.Screen name="AllExpenses" component={AllExpenses}
       options={{
         title: "All Expenses",
         tabBarLabel: "All Expenses",
-        tabBartIcon: ({color, size}) => (<Ionicons name="calendar" size={size} color={color}/>),
+        tabBarIcon: ({color, size}) => (<Ionicons name="calendar" size={size} color={color}/>),
     }}
     />
-  </BottomTabs.Navigator>
+  </BottomTabs.Navigator>)
 }
 
 export default function App() {
