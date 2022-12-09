@@ -2,7 +2,11 @@ import { useLayoutEffect } from "react";
 import { View, StyleSheet } from "react-native";
 import Button from "../components/UI/Button";
 import { useDispatch, useSelector } from "react-redux"; // Needed to handle and access app wide state
-import { deleteExpense } from "../store/redux/expenses";
+import {
+  deleteExpense,
+  updateExpense,
+  addExpense,
+} from "../store/redux/expenses";
 import IconButton from "../components/UI/IconButton";
 import { GlobalStyles } from "../constants/styles";
 
@@ -29,6 +33,23 @@ function ManageExpenses({ route, navigation }) {
   };
 
   const confirmHandler = () => {
+    if (isEditing) {
+      dispatch(
+        updateExpense({
+          id: editedExpenseId,
+          description: "this is not a test",
+          amount: 19.99,
+          date: new Date("2022-12-19"),
+        })
+      );
+    } else
+      dispatch(
+        addExpense({
+          description: "this is a test",
+          amount: 19.54,
+          date: new Date("2022-12-19"),
+        })
+      );
     navigation.goBack();
   };
   return (
